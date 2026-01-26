@@ -1,9 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+/* general */
+@import './assets/style/style.css';
+
+
+/* Tailwind Theme variables */
+@theme {
+
+  --color-primary-100: #EB521F;
+  --color-primary-200: #FF6633;
+  --color-primary-300: #F9926F;
+  --color-primary-400: #FFCBB6;
+  --color-primary-500: #FEF9F5;
+
+  --color-secondary-100: #F1642E;
+  --color-secondary-200: #A69485;
+  --color-secondary-300: #F9CFB9;
+  --color-secondary-400: #FFE4B9;
+
+  --color-grayscale-50: #848484;
+
+  --text-6xl: 3.75rem;  /* 60px */
+  --text-5xl: 3rem;     /* 48px */
+  --text-4xl: 2.5rem;   /* 40px */
+  --text-3xl: 2rem;   /* 32px */
+  --text-2xl: 1.75rem;   /* 28px */
+  --text-xl: 1.5rem;   /* 24px */
+  --text-lg: 1.25rem;   /* 20px */
+  --text-base: 1rem;   /* 16px */
+  --text-sm: 0.875rem;   /* 14px */
+  
 }
 
+/* Daisy UI Theme variables */
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true; /* set as default */
+  prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
+  color-scheme: light; /* color of browser-provided UI */
+
+  --color-primary: #EB521F;
+}
