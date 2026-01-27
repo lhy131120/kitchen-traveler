@@ -1,4 +1,4 @@
-# React + Vite
+# Project Structure
 ```
 └── 📁kitchen-traveler
     └── 📁public
