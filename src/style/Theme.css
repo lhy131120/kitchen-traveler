@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Noto Sans', sans-serif;
+  
+  --color-primary-10: #EB521F;
+  --color-primary-20: #FF6633;
+  --color-primary-30: #F9926F;
+  --color-primary-40: #FFCBB6;
+  --color-primary-50: #FEF9F5;
+
+  --color-secondary-10: #F1642E;
+  --color-secondary-20: #A69485;
+  --color-secondary-30: #F9CFB9;
+  --color-secondary-40: #FFE4B9;
+
+  --color-grayscale-10: #848484;
+
+}
+
+@layer components {
+  .btn {
+    @apply font-semibold py-2 px-4 rounded-full border-2 border-black hover:cursor-pointer;
+  }
+  .btn-primary {
+    @apply bg-primary-10 hover:bg-primary-20;
+  }
+}
