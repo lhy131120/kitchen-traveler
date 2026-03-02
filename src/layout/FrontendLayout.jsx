@@ -4,11 +4,12 @@ import { Footer } from "@/components/common/Footer";
 const FrontendLayout = () => {
 	return (
 		<>
-			{/* { isLoginPage ? null : <Header /> } */}
+			{/* {isLoginPage ? null : <Header />} */}
+			<Header />
 			<main>
 				<Outlet />
 			</main>
-			{/* { isLoginPage ? null : <Footer /> } */}
+			{/* {isLoginPage ? null : <Footer />} */}
 		</>
 	);
 };
