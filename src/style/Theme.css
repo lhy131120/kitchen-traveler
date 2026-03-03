@@ -6,38 +6,82 @@
 @theme {
   --font-display: 'Noto Sans', sans-serif;
 
-  --color-primary-10: #EB521F;
-  --color-primary-20: #FF6633;
-  --color-primary-30: #F9926F;
-  --color-primary-40: #FFCBB6;
-  --color-primary-50: #FEF9F5;
+  --color-primary-10: oklch(64.13% 0.198 37.15);
+  --color-primary-20: oklch(69.80% 0.197 37.98);
+  --color-primary-30: oklch(76.13% 0.134 39.45);
+  --color-primary-40: oklch(88.24% 0.066 43.08);
+  --color-primary-50: oklch(98.49% 0.008 61.46);
 
-  --color-secondary-10: #F1642E;
-  --color-secondary-20: #A69485;
-  --color-secondary-30: #F9CFB9;
-  --color-secondary-40: #FFE4B9;
-  --color-secondary-50: #6E4726;
-  --color-secondary-60: #CEBEB1;
+  --color-secondary-10: oklch(67.38% 0.186 39.71);
+  --color-secondary-20: oklch(67.82% 0.030 62.10);
+  --color-secondary-30: oklch(88.49% 0.056 49.21);
+  --color-secondary-40: oklch(93.05% 0.063 79.32);
+  --color-secondary-50: oklch(43.51% 0.071 59.49);
+  --color-secondary-60: oklch(81.12% 0.026 61.57);
 
-  --color-grayscale-10: #848484;
+  --color-grayscale-10: oklch(61.33% 0.000 0);
 }
 
-@utility container {
-  width: 100%;
-  max-width: 1336px;
-  margin-inline: auto;
-  padding-inline: 12px;
+@property --input-border {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(70% 0.02 240deg);
+  /* 預設淺灰藍 */
+}
+
+@property --input-focus-ring {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: oklch(69.80% 0.197 37.98);
+  /* 焦點亮藍 */
+}
+
+@property --input-bg {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: oklch(98% 0.005 240deg);
+  /* 近乎白 */
+}
+
+@layer utilities {
+  .container {
+    width: 100%;
+    max-width: 1336px;
+    margin-inline: auto;
+    padding-inline: 12px;
+  }
 }
 
 @layer components {
   .btn {
-    @apply font-semibold py-2 px-4 rounded-full border-2 border-black hover:cursor-pointer;
+    @apply text-white rounded-full text-base/normal py-3 px-14 cursor-pointer bg-primary-20 hover:bg-primary-10 disabled:bg-secondary-60 transition-all duration-300;
   }
 
-  .btn-primary {
-    @apply bg-primary-10 hover:bg-primary-20;
+  .btn-outline {
+    @apply text-primary-20 hover:text-white bg-transparent hover:bg-primary-20 border border-primary-20;
+  }
+
+  .btn-icon {
+    @apply px-6 inline-flex gap-1.5 items-center;
+  }
+
+  .inputText {
+    @apply border border-secondary-60 rounded-lg px-4 py-2 text-base focus:outline-none;
+    height: 40px;
+    appearance: none;
+    box-shadow: 0 2px 6px oklch(0% 0 0 / 0.03);
+    transition: all 0.3s ease;
+
+    &::placeholeder {
+      color: oklch(81.12% 0.026 61.57);
+    }
+  }
+
+  .inputText:focus {
+    box-shadow: 0 0 0 4px var(--input-focus-ring), 0 4px 12px oklch(0% 0 0 / 0.08);
   }
 }
+
 
 @media (min-width: 992px) {
   .container {

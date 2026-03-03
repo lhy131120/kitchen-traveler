@@ -1,0 +1,80 @@
+/* .hasDropDownMenu {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.hasDropDownMenu:hover .dropdownMenu,
+.hasDropDownMenu:focus-within .dropdownMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+  padding: 8px 0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+  z-index: 50;
+  list-style: none;
+}
+
+.dropdownMenu li a {
+  display: block;
+  padding: 8px 20px;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.dropdownMenu li a:hover {
+  background-color: #FEF9F5;
+  color: #FF6633;
+} */
+
+.mainNav {
+  display: flex;
+  align-items: center;
+  gap: 3.75rem;
+}
+
+.mainNav .mainNavItem {
+  position: relative;
+  display: flex;
+  gap: .25rem;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+.mainNav .mainNavLink {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.mainNav .subNavMenuWrapper {
+  position: absolute;
+  width: 100%;
+  inset: 100% 0 auto 0;
+}
+
+.mainNav .subNavMenu {
+  background-color: var(--color-primary-40);
+  width: 100%;
+  max-width: 100%;
+}
+
+.mainNav .subNavLink {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  padding: 8px 20px;
+}
