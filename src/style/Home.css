@@ -1,0 +1,28 @@
+/* Mobile first: 375 x 487 */
+.hero-swiper {
+  aspect-ratio: 375 / 487;
+  width: 100%;
+}
+
+.hero-slide {
+  background-image: var(--bg-mobile);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+.hero-content {
+  width: clamp(240px, 100%, 440px);
+}
+
+/* Desktop: 1920 x 756 */
+@media (min-width: 768px) {
+  .hero-swiper {
+    aspect-ratio: 1920 / 756;
+  }
+
+  .hero-slide {
+    background-image: var(--bg-desktop);
+  }
+}

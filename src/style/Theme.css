@@ -5,6 +5,9 @@
 
 @theme {
   --font-display: 'Noto Sans', sans-serif;
+  --leading-tight: 1.2;
+  --tracking-small: 0.02em;
+  --breakpoint-lg: 62rem;
 
   --color-primary-10: oklch(64.13% 0.198 37.15);
   --color-primary-20: oklch(69.80% 0.197 37.98);
@@ -20,6 +23,7 @@
   --color-secondary-60: oklch(81.12% 0.026 61.57);
 
   --color-grayscale-10: oklch(61.33% 0.000 0);
+
 }
 
 @property --input-border {
