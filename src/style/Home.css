@@ -1,7 +1,16 @@
-/* Mobile first: 375 x 487 */
+.hero-title {
+  font-size: clamp(2.25rem, -2.6447rem + 7.8947vw, 3.75rem);
+}
+
 .hero-swiper {
   aspect-ratio: 375 / 487;
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .hero-swiper {
+    aspect-ratio: 1920 / 756;
+  }
 }
 
 .hero-slide {
@@ -12,17 +21,16 @@
   height: 100%;
 }
 
+@media (min-width: 768px) {
+  .hero-slide {
+    background-image: var(--bg-desktop);
+  }
+}
+
 .hero-content {
   width: clamp(240px, 100%, 440px);
 }
 
-/* Desktop: 1920 x 756 */
-@media (min-width: 768px) {
-  .hero-swiper {
-    aspect-ratio: 1920 / 756;
-  }
-
-  .hero-slide {
-    background-image: var(--bg-desktop);
-  }
+.swiper-slide {
+  width: auto;
 }

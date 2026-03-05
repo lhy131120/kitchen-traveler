@@ -14,6 +14,7 @@
   --color-primary-30: oklch(76.13% 0.134 39.45);
   --color-primary-40: oklch(88.24% 0.066 43.08);
   --color-primary-50: oklch(98.49% 0.008 61.46);
+  --color-primary-60: oklch(97.60% 0.014 57.59);
 
   --color-secondary-10: oklch(67.38% 0.186 39.71);
   --color-secondary-20: oklch(67.82% 0.030 62.10);
@@ -23,28 +24,24 @@
   --color-secondary-60: oklch(81.12% 0.026 61.57);
 
   --color-grayscale-10: oklch(61.33% 0.000 0);
-
 }
 
 @property --input-border {
   syntax: "<color>";
   inherits: true;
   initial-value: oklch(70% 0.02 240deg);
-  /* 預設淺灰藍 */
 }
 
 @property --input-focus-ring {
   syntax: "<color>";
   inherits: false;
   initial-value: oklch(69.80% 0.197 37.98);
-  /* 焦點亮藍 */
 }
 
 @property --input-bg {
   syntax: "<color>";
   inherits: true;
   initial-value: oklch(98% 0.005 240deg);
-  /* 近乎白 */
 }
 
 @layer utilities {
@@ -53,20 +50,67 @@
     max-width: 1336px;
     margin-inline: auto;
     padding-inline: 12px;
+
+    @media (min-width: 992px) {
+      padding-inline: 20px;
+    }
   }
 }
 
 @layer components {
+  .title {
+    @apply text-primary-20 font-bold leading-tight text-center block relative mb-5 lg:mb-10;
+    font-size: clamp(1.5rem, -0.1316rem + 2.6316vw, 2rem);
+
+    span {
+      @apply relative flex justify-center items-center gap-4 lg:gap-6 px-4 lg:px-14;
+
+      &::before,
+      &::after {
+        content: "";
+        display: block;
+        height: 32px;
+        width: 21px;
+        background: no-repeat center / contain;
+
+        @media (min-width: 992px) {
+          height: 47px;
+          width: 30px;
+        }
+      }
+
+      &::before {
+        background-image: url("@/images/fork-s.png");
+
+        @media (min-width: 992px) {
+          background-image: url("@/images/fork.png");
+        }
+      }
+
+      &::after {
+        background-image: url("@/images/spoon-s.png");
+
+        @media (min-width: 992px) {
+          background-image: url("@/images/spoon.png");
+        }
+      }
+    }
+  }
+
   .btn {
     @apply text-white rounded-full text-base/normal py-3 px-14 cursor-pointer bg-primary-20 hover:bg-primary-10 disabled:bg-secondary-60 transition-all duration-300;
-  }
 
-  .btn-outline {
-    @apply text-primary-20 hover:text-white bg-transparent hover:bg-primary-20 border border-primary-20;
-  }
+    &:focus-visible {
+      @apply outline-none ring-2 ring-primary-30;
+    }
 
-  .btn-icon {
-    @apply px-6 inline-flex gap-1.5 items-center;
+    &.btn-outline {
+      @apply text-primary-20 hover:text-white bg-transparent hover:bg-primary-20 border border-primary-20;
+    }
+
+    &.btn-icon {
+      @apply px-6 inline-flex gap-1.5 items-center;
+    }
   }
 
   .inputText {
@@ -76,19 +120,12 @@
     box-shadow: 0 2px 6px oklch(0% 0 0 / 0.03);
     transition: all 0.3s ease;
 
-    &::placeholeder {
+    &::placeholder {
       color: oklch(81.12% 0.026 61.57);
     }
-  }
 
-  .inputText:focus {
-    box-shadow: 0 0 0 4px var(--input-focus-ring), 0 4px 12px oklch(0% 0 0 / 0.08);
-  }
-}
-
-
-@media (min-width: 992px) {
-  .container {
-    padding-inline: 20px;
+    &:focus {
+      box-shadow: 0 0 0 4px var(--input-focus-ring), 0 4px 12px oklch(0% 0 0 / 0.08);
+    }
   }
 }
