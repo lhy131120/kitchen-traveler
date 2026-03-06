@@ -22,6 +22,7 @@
   --color-secondary-40: oklch(93.05% 0.063 79.32);
   --color-secondary-50: oklch(43.51% 0.071 59.49);
   --color-secondary-60: oklch(81.12% 0.026 61.57);
+  --color-secondary-80: oklch(56.20% 0.034 62.16);
 
   --color-grayscale-10: oklch(61.33% 0.000 0);
 }
@@ -58,6 +59,18 @@
 }
 
 @layer components {
+
+  .dc-up:before {
+    content: "";
+    display: block;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 28px;
+    background: url("@/images/dc_up.png") repeat-x center center / contain;
+    z-index: 10;
+  }
+
   .title {
     @apply text-primary-20 font-bold leading-tight text-center block relative mb-5 lg:mb-10;
     font-size: clamp(1.5rem, -0.1316rem + 2.6316vw, 2rem);

@@ -116,3 +116,7 @@
     display: none;
   }
 }
+
+.swiper-slide {
+  width: auto;
+}
