@@ -60,7 +60,12 @@
 
 @layer components {
 
-  .dc-up:before {
+  body {
+    color: var(--color-secondary-80);
+  }
+
+  .dc-up:before,
+  .dc-down:before {
     content: "";
     display: block;
     width: 100%;
@@ -69,6 +74,11 @@
     height: 28px;
     background: url("@/images/dc_up.png") repeat-x center center / contain;
     z-index: 10;
+  }
+
+  .dc-down:before {
+    background: url("@/images/dc_down.png") repeat-x center center / contain;
+    top: 0;
   }
 
   .title {

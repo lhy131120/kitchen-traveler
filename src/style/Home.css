@@ -67,14 +67,8 @@
 }
 
 .product-swiper .img button {
-  /* position: absolute; */
   inset: 1rem 1rem auto auto;
-  /* width: 32px; */
-  /* height: 32px; */
-  /* display: grid; */
-  /* place-items: center; */
   cursor: pointer;
-  /* z-index: 1; */
 }
 
 .product-swiper-container {
@@ -87,4 +81,37 @@
 
 .product-swiper-container .swiper-button-next {
   right: -24px !important;
+}
+
+.homeComment {
+  background-image: var(--bg-mobile);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+}
+
+@media (min-width: 992px) {
+  .homeComment {
+    background-image: var(--bg-desktop);
+  }
+}
+
+.homeComment .swiper-wrapper {
+  align-items: stretch !important;
+}
+
+.homeComment .swiper-slide {
+  width: 306px;
+  height: auto !important;
+}
+
+.homeComment .swiper-slide>div {
+  height: 100%;
+}
+
+@media (min-width: 992px) {
+  .homeComment .swiper-slide {
+    width: auto;
+  }
 }
