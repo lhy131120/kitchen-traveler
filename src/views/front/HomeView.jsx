@@ -1,6 +1,7 @@
-import { memo, useRef } from "react";
+import { memo, useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade, Keyboard, A11y } from "swiper/modules";
+import axios from "axios";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -244,6 +245,12 @@ HomeCommentSwiper.displayName = "HomeCommentSwiper";
 // 主元件
 const Home = () => {
 
+	const [products, setProducts] = useState([]);
+
+	useEffect(() => {
+		
+	}, []);
+
 	return (
 		<>
 			{/* <button type="button" className="btn">Button</button>
@@ -257,7 +264,7 @@ const Home = () => {
 			<HeroSwiper banners={banners} />
 
 			{/* Products Section */}
-			<section className="bg-primary-60 relative dc-up pt-10 lg:pt-25 pb-15 lg:pb-29 text-center">
+			<section className="bg-primary-60 relative dc-up pt-10 lg:pt-25 pb-15 lg:pb-29 text-center overflow-hidden">
 				<div className="max-w-324 lg:max-w-334 mx-auto px-3 lg:px-6">
 					<h2 className="title"><span>推薦商品</span></h2>
 					<ProductCardSwiper tempProducts={tempProducts} />
@@ -348,7 +355,7 @@ const Home = () => {
 									<div className="relative overflow-hidden h-48">
 										<img src={blog.image} alt={blog.title} onError={handleImgError} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
 										<div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-											<a href={blog.link || '#'} className="btn btn-icon text-sm">閱讀更多<span className="material-symbols-outlined">arrow_forward_ios</span></a>
+											<a href={blog.link || '#'} className="btn btn-icon text-sm">閱讀更多</a>
 										</div>
 									</div>
 									<div className="flex flex-col gap-3 p-5 bg-white flex-1">

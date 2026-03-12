@@ -9,6 +9,7 @@ const FrontendLayout = () => {
 			<main>
 				<Outlet />
 			</main>
+			<Footer />
 			{/* {isLoginPage ? null : <Footer />} */}
 		</>
 	);

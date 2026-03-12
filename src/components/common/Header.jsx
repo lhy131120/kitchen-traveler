@@ -113,29 +113,29 @@ export const Header = () => {
 				<div className="flex items-center py-3 lg:py-5 justify-between transition-all duration-300 ease-in-out">
 					<button type="button" className="grid lg:hidden place-items-center w-10 h-10 hover:cursor-pointer hover:text-primary-10 transition-colors duration-300" onClick={toggleMobileMenu}><span className="material-symbols-outlined">menu</span></button>
 
-					<Link to="/" className='lg:me-20'><img src={logo} alt="logo" className="w-41" /></Link>
+					<NavLink to="/" className='lg:me-20'><img src={logo} alt="logo" className="w-41" /></NavLink>
 
 					<div className='hidden lg:flex items-center justify-between flex-1 mx-auto'>
 						<nav ref={navRef}>
 							<ul className='mainNav flex items-center gap-8'>
 								<li className='mainNavItem whitespace-nowrap'>
-									<NavLink className={"mainNavLink"} to="/">關於我們</NavLink>
+									<NavLink className={"mainNavLink"} to="/about">關於我們</NavLink>
 								</li>
 								<li className='mainNavItem whitespace-nowrap hasSubMenu'>
-									<NavLink className={"mainNavLink"} to="/">商品列表</NavLink>
+									<NavLink className={"mainNavLink"} to="/products">商品列表</NavLink>
 									<button type="button" className="w-5 h-5 hover:cursor-pointer" onClick={() => toggleSubMenu(0)}>
 										<span className={`material-symbols-outlined transition-transform duration-300 ${activeSubMenu === 0 ? 'rotate-180' : ''}`}>keyboard_arrow_down</span>
 									</button>
 									<div className={`subNavMenu ${activeSubMenu === 0 ? 'open' : ''}`}>
 										<ul>
-											<li className='subNavItem'><NavLink className={"subNavLink"} to="/">鍋具</NavLink></li>
-											<li className='subNavItem'><NavLink className={"subNavLink"} to="/">刀具</NavLink></li>
-											<li className='subNavItem'><NavLink className={"subNavLink"} to="/">餐具</NavLink></li>
+											<li className='subNavItem'><NavLink className={"subNavLink"} to="/products/鍋具">鍋具</NavLink></li>
+											<li className='subNavItem'><NavLink className={"subNavLink"} to="/products/刀具">刀具</NavLink></li>
+											<li className='subNavItem'><NavLink className={"subNavLink"} to="/products/餐具">餐具</NavLink></li>
 										</ul>
 									</div>
 								</li>
 								<li className='mainNavItem whitespace-nowrap hasSubMenu'>
-									<NavLink className={"mainNavLink"} to="/">品牌專欄</NavLink>
+									<NavLink className={"mainNavLink"} to="/articles">品牌專欄</NavLink>
 									<button type="button" className="w-5 h-5 hover:cursor-pointer" onClick={() => toggleSubMenu(1)}>
 										<span className={`material-symbols-outlined transition-transform duration-300 ${activeSubMenu === 1 ? 'rotate-180' : ''}`}>keyboard_arrow_down</span>
 									</button>
