@@ -64,6 +64,10 @@
     color: var(--color-secondary-80);
   }
 
+  main {
+    min-height: 50vh;
+  }
+
   .dc-up:before,
   .dc-down:before {
     content: "";

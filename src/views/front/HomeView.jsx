@@ -1,11 +1,15 @@
 import { memo, useRef, useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { fetchProducts } from "@/store/productsSlice";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, EffectFade, Keyboard, A11y } from "swiper/modules";
-import axios from "axios";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
+import { toast } from "react-toastify";
 import "@/style/Home.css";
 import "@/style/Swiper.css";
 
@@ -33,6 +37,7 @@ import homeBlogImg1 from "@/images/blog1.png";
 import homeBlogImg2 from "@/images/blog2.png";
 import homeBlogImg3 from "@/images/blog3.png";
 import homeBlogImg4 from "@/images/blog4.png";
+import { useCallback } from "react";
 
 const banners = [
 	{ desktop: banner1, mobile: banner1mobile, text: "把世界的味道\n帶進你家廚房", callToAction: "立即選購" },
@@ -45,14 +50,6 @@ const SWIPER_MODULES = [Navigation, Pagination, Autoplay, EffectFade, Keyboard, 
 const SWIPER_PAGINATION = { clickable: true, dynamicBullets: true };
 const SWIPER_AUTOPLAY = { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true };
 
-const tempProducts = [
-	{ id: 1, title: "商品名稱1", price: 1000, image: "https://placehold.co/282x307?text=Product+1" },
-	{ id: 2, title: "商品名稱2", price: 2000, image: "https://placehold.co/282x307?text=Product+2" },
-	{ id: 3, title: "商品名稱3", price: 3000, image: "https://placehold.co/282x307?text=Product+3" },
-	{ id: 4, title: "商品名稱4", price: 4000, image: "https://placehld.co/282x307?text=Product+4" },
-	{ id: 5, title: "商品名稱5", price: 5000, image: "https://placehold.co/282x307?text=Product+5" },
-	{ id: 6, title: "商品名稱6", price: 6000, image: "https://placehold.co/282x307?text=Product+6" },
-]
 
 const stepData = [
 	{ title: "倒入鍋中", text: "拆袋即煮，不需備料", image: stepImg1 },
@@ -144,15 +141,19 @@ const HeroSwiper = memo(({ banners }) => {
 });
 HeroSwiper.displayName = "HeroSwiper";
 
-const ProductCard = memo(({ product }) => {
+const ProductCard = memo(({ product, onNavigate }) => {
 	return (<>
-		<div className="group card flex flex-col gap-3 p-3 bg-white border border-primary-40 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" onClick={() => console.log("hit")}>
+		<div className="group card flex flex-col gap-3 p-3 bg-white border border-primary-40 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-lg" onClick={() => onNavigate(product.id)}>
 			<div className="img">
 				<button type="button" className="absolute w-8 h-8 grid place-items-center z-1"><span className="material-symbols-outlined text-secondary-60 transition-all duration-300 group-hover:text-primary-20 group-hover:[font-variation-settings:'FILL'_1]">favorite</span></button>
-				<img src={product.image} alt={product.title} onError={handleImgError} className="product-image transition-transform duration-500 ease-out group-hover:scale-105" />
+				<img src={product.imageUrl} alt={product.title} onError={handleImgError} className="product-image transition-transform duration-500 ease-out group-hover:scale-105" />
 			</div>
 			<div className="info">
-				<h3 className="mb-1 text-secondary-50 font-medium text-xl/normal transition-colors duration-300 group-hover:text-primary-20">{product.title}</h3>
+				<h3 className="mb-1 text-secondary-50 font-medium leading-tight transition-colors duration-300 group-hover:text-primary-20">
+					<span className="text-xl">{product.title.replace(/\s*[A-Za-z].*$/, '')}</span>
+					<br />
+					<span className="text-sm">{product.title.match(/[A-Za-z].*$/)?.[0]}</span>
+				</h3>
 				<p className="price text-primary-20 font-bold text-2xl/tight">${product.price}</p>
 			</div>
 		</div>
@@ -160,7 +161,7 @@ const ProductCard = memo(({ product }) => {
 });
 ProductCard.displayName = "ProductCard";
 
-const ProductCardSwiper = memo(({ tempProducts }) => {
+const ProductCardSwiper = memo(({ products, onNavigate }) => {
 	const swiperRef = useRef(null);
 	return (
 		<div className="product-swiper-container mb-7 lg:mb-10">
@@ -176,9 +177,9 @@ const ProductCardSwiper = memo(({ tempProducts }) => {
 				}}
 				className="product-swiper"
 			>
-				{tempProducts.map((product) => (
+				{products.map((product) => (
 					<SwiperSlide key={product.id}>
-						<ProductCard product={product} />
+						<ProductCard product={product} onNavigate={onNavigate} />
 					</SwiperSlide>
 				))}
 			</Swiper>
@@ -244,12 +245,18 @@ HomeCommentSwiper.displayName = "HomeCommentSwiper";
 
 // 主元件
 const Home = () => {
-
-	const [products, setProducts] = useState([]);
+	const dispatch = useDispatch();
+	const products = useSelector((state) => state.products.products);
+	const navigate = useNavigate();
+	const handleNavigate = useCallback(id => navigate(`/products/${id}`), [navigate]);
 
 	useEffect(() => {
-		
-	}, []);
+		if (products.length === 0) {
+			dispatch(fetchProducts())
+				.unwrap()
+				.catch((msg) => toast.error(`取得產品列表失敗: ${msg}`));
+		}
+	}, [dispatch, products.length]);
 
 	return (
 		<>
@@ -267,7 +274,7 @@ const Home = () => {
 			<section className="bg-primary-60 relative dc-up pt-10 lg:pt-25 pb-15 lg:pb-29 text-center overflow-hidden">
 				<div className="max-w-324 lg:max-w-334 mx-auto px-3 lg:px-6">
 					<h2 className="title"><span>推薦商品</span></h2>
-					<ProductCardSwiper tempProducts={tempProducts} />
+					<ProductCardSwiper products={products} onNavigate={handleNavigate} />
 					<button type="button" className="btn btn-outline btn-icon hover:shadow-primary-30 hover:shadow-md">選購去<span className="material-symbols-outlined">arrow_forward_ios</span></button>
 				</div>
 			</section>

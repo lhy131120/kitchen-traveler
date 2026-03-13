@@ -1,3 +1,5 @@
+import { Provider } from "react-redux";
+import { store } from "@/store";
 import { createRoot } from "react-dom/client";
 import App from "@/App.jsx";
 
@@ -11,7 +13,10 @@ import "@/style/Main.css";
 
 createRoot(document.getElementById("root")).render(
 	<>
-		<App />
+		<Provider store={store}>
+			<App />
+		</Provider>
+		
 		<ToastContainer
 			position="top-right" // 位置：top-right / bottom-center 等
 			autoClose={2000} // 自動關閉時間 (ms)，設 0 則不自動關
